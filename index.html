@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Index der Situationen - Schwerbehindertenrecht (SGB IX) | Mehrsprachig</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+            transition: all 0.2s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sprachauswahl mit Flaggen */
+        .lang-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .flag-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.9rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 40px;
+            transition: 0.1s linear;
+            opacity: 0.7;
+        }
+        .flag-btn.active {
+            opacity: 1;
+            transform: scale(1.08);
+            background: #e6f0f8;
+            box-shadow: 0 0 0 2px #1f6392;
+        }
+        .flag-btn:hover {
+            opacity: 1;
+            transform: scale(1.03);
+            background: #dee9f0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .header h1 {
+            font-size: 1.9rem;
+            background: linear-gradient(135deg, #1e4a6e, #0f2c40);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .badge-update {
+            background: #d4e3ed;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+        .situation-card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .card-header {
+            background: #f8fafc;
+            padding: 1.2rem 1.8rem;
+            border-bottom: 2px solid #e0edf5;
+        }
+        .situation-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0c4a6e;
+            background: #e9f2f9;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .card-body {
+            padding: 1.6rem 1.8rem;
+        }
+        .section {
+            border-left: 4px solid #2c7da0;
+            padding-left: 1.2rem;
+            margin-bottom: 1.3rem;
+        }
+        .section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e5a7a;
+            margin-bottom: 0.5rem;
+        }
+        .section p, .section ul {
+            line-height: 1.45;
+            color: #1f3b4c;
+        }
+        .link-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .file-link, .web-link {
+            background: #f1f5f9;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #1e4663;
+            border: 1px solid #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .file-link:hover, .web-link:hover {
+            background: #e2eaf1;
+            text-decoration: underline;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #5c6f87;
+            background: #f1f6fa;
+            padding: 1rem;
+            border-radius: 40px;
+        }
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .card-body { padding: 1.2rem; }
+            .situation-title { font-size: 1.2rem; }
+            .flag-btn { font-size: 1.6rem; }
+        }
+        /* RTL für Arabisch */
+        [dir="rtl"] .section {
+            border-right: 4px solid #2c7da0;
+            border-left: none;
+            padding-right: 1.2rem;
+            padding-left: 0;
+        }
+        [dir="rtl"] .card-header, [dir="rtl"] .card-body {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Flaggen-Leiste: Sprachen DE, EN, ES, AR, PL, IT, EL, TR -->
+    <div class="lang-bar" id="languageBar">
+        <button class="flag-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+        <button class="flag-btn" data-lang="en" title="English">🇬🇧</button>
+        <button class="flag-btn" data-lang="es" title="Español">🇪🇸</button>
+        <button class="flag-btn" data-lang="ar" title="العربية">🇸🇦</button>
+        <button class="flag-btn" data-lang="pl" title="Polski">🇵🇱</button>
+        <button class="flag-btn" data-lang="it" title="Italiano">🇮🇹</button>
+        <button class="flag-btn" data-lang="el" title="Ελληνικά">🇬🇷</button>
+        <button class="flag-btn" data-lang="tr" title="Türkçe">🇹🇷</button>
+    </div>
+
+    <div class="header">
+        <h1 id="mainTitle">📋 Situationsindex · Rehabilitation und Rechte</h1>
+        <p id="subtitle">Basierend auf SGB IX | AGG | KSchG | Beratung für Menschen mit Behinderungen</p>
+        <div class="badge-update" id="liveDate">📅 Aktuelle Referenz: laden...</div>
+    </div>
+    <div id="cardsContainer"></div>
+    <div class="footer-note" id="footerNote">
+        ⚖️ Zusammenfassung der Datei Situationsindex.xlsx. Lokale Dokumentlinks sind Verweise.<br>
+        ✅ Mehrsprachige Offline-Seite (Türkisch inklusive) – Teilen Sie diese HTML-Datei.
+    </div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // MEHRSPRACHIGER DATENSATZ: DEUTSCH, ENGLISCH, SPANISCH, ARABISCH, POLNISCH, ITALIENISCH, GRIECHISCH, TÜRKISCH
+    // 8 Sprachen. Standard = Deutsch (de)
+    // --------------------------------------------------------------
+    const translations = {
+        // Allgemeine UI-Texte
+        ui: {
+            de: { title: "📋 Situationsindex · Rehabilitation und Rechte", subtitle: "Basierend auf SGB IX | AGG | KSchG | Beratung für Menschen mit Behinderungen", footer: "⚖️ Zusammenfassung der Datei Situationsindex.xlsx. Lokale Dokumentlinks sind Verweise. ✅ Mehrsprachige Offline-Seite (Türkisch inklusive) – Teilen Sie diese HTML-Datei." },
+            en: { title: "📋 Situation Index · Rehabilitation & Rights", subtitle: "Based on SGB IX | AGG | KSchG | Advice for persons with disabilities", footer: "⚖️ Summarized from Situationsindex.xlsx. Local document links are references. ✅ Multilingual offline page (Turkish included) – share this HTML file." },
+            es: { title: "📋 Índice de Situaciones · Rehabilitación y derechos", subtitle: "Basado en SGB IX | AGG | KSchG | Asesoramiento para personas con discapacidad", footer: "⚖️ Información resumida del archivo Situationsindex.xlsx. Los enlaces a documentos locales son referencias. ✅ Página multilingüe offline (incluye turco) – comparte este archivo HTML." },
+            ar: { title: "📋 دليل الحالات · التأهيل والحقوق", subtitle: "استنادًا إلى SGB IX | AGG | KSchG | استشارات للأشخاص ذوي الإعاقة", footer: "⚖️ معلومات ملخصة من ملف Situationsindex.xlsx. روابط المستندات المحلية هي مراجع. ✅ صفحة غير متصلة متعددة اللغات (تشمل التركية) - انسخ ملف HTML هذا للمشاركة." },
+            pl: { title: "📋 Indeks Sytuacji · Rehabilitacja i prawa", subtitle: "Oparte na SGB IX | AGG | KSchG | Doradztwo dla osób z niepełnosprawnościami", footer: "⚖️ Podsumowanie z pliku Situationsindex.xlsx. Linki do dokumentów lokalnych są odniesieniami. ✅ Wielojęzyczna strona offline (z tureckim) – skopiuj ten HTML, aby udostępnić." },
+            it: { title: "📋 Indice delle Situazioni · Riabilitazione e diritti", subtitle: "Basato su SGB IX | AGG | KSchG | Consulenza per persone con disabilità", footer: "⚖️ Informazioni riassunte dal file Situationsindex.xlsx. I collegamenti ai documenti locali sono riferimenti. ✅ Pagina offline multilingue (incluso turco) – copia questo HTML per condividere." },
+            el: { title: "📋 Ευρετήριο Καταστάσεων · Αποκατάσταση & Δικαιώματα", subtitle: "Βάσει SGB IX | AGG | KSchG | Συμβουλευτική για άτομα με αναπηρία", footer: "⚖️ Συνοπτικές πληροφορίες από το αρχείο Situationsindex.xlsx. Οι σύνδεσμοι τοπικών εγγράφων είναι αναφορές. ✅ Πολύγλωσση σελίδα εκτός σύνδεσης (συμπεριλαμβανομένων των Τουρκικών) – αντιγράψτε αυτό το HTML για κοινή χρήση." },
+            tr: { title: "📋 Durum Dizini · Rehabilitasyon ve Haklar", subtitle: "SGB IX | AGG | KSchG temelinde | Engelli bireyler için danışmanlık", footer: "⚖️ Situationsindex.xlsx dosyasından özetlenen bilgiler. Yerel belge bağlantıları referanslardır. ✅ Çok dilli çevrimdışı sayfa (Türkçe dahil) – paylaşmak için bu HTML dosyasını kopyalayın." }
+        },
+        // 7 SITUATIONEN: jeweils Titel, Beschreibung, Gesetze, Formulare, Anmerkungen
+        situations: [
+            {   // Feststellung einer Behinderung
+                de: { titel: "Feststellung einer Behinderung & GdB Antrag", beschreibung: "Erstantrag auf Feststellung des Grades der Behinderung (GdB) und Ausstellung des Schwerbehindertenausweises.", gesetze: "§ 152 SGB IX (Feststellung der Behinderung, Ausweise).", formulare: "Antrag auf Feststellung einer Behinderung (Erst-/Änderungsantrag), Passfoto.", anmerkungen: "Zuständig: Versorgungsamt. Aktuelle Arztberichte (nicht älter als 2 Jahre) beifügen." },
+                en: { titel: "Disability assessment & GdB application", beschreibung: "Initial application for determination of degree of disability (GdB) and issuance of severely disabled ID.", gesetze: "§ 152 SGB IX (Determination of disability, ID cards).", formulare: "Application for disability determination, passport photo.", anmerkungen: "Responsible: Social welfare office (Versorgungsamt). Attach recent medical reports (not older than 2 years)." },
+                es: { titel: "Determinación de discapacidad y solicitud GdB", beschreibung: "Primera solicitud para determinar el grado de discapacidad (GdB) y obtener el carnet de persona con discapacidad grave.", gesetze: "§ 152 SGB IX (Determinación de discapacidad, carnets).", formulare: "Solicitud de determinación de discapacidad, foto carnet.", anmerkungen: "Oficina competente: Versorgungsamt. Adjuntar informes médicos recientes (no más de 2 años)." },
+                ar: { titel: "تحديد الإعاقة وطلب GdB", beschreibung: "الطلب الأولي لتحديد درجة الإعاقة (GdB) وإصدار بطاقة الشخص ذي الإعاقة الشديدة.", gesetze: "§ 152 SGB IX (تحديد الإعاقة، البطاقات).", formulare: "طلب تحديد الإعاقة، صورة شخصية.", anmerkungen: "الجهة المسؤولة: Versorgungsamt. أرفق تقارير طبية حديثة (لا يتجاوز عمرها سنتين)." },
+                pl: { titel: "Ustalenie niepełnosprawności i wniosek GdB", beschreibung: "Pierwszy wniosek o ustalenie stopnia niepełnosprawności (GdB) i wydanie legitymacji osoby ciężko niepełnosprawnej.", gesetze: "§ 152 SGB IX (Ustalenie niepełnosprawności, legitymacje).", formulare: "Wniosek o ustalenie niepełnosprawności, zdjęcie legitymacyjne.", anmerkungen: "Właściwy urząd: Versorgungsamt. Dołącz aktualne raporty medyczne (nie starsze niż 2 lata)." },
+                it: { titel: "Accertamento disabilità e richiesta GdB", beschreibung: "Prima richiesta di determinazione del grado di disabilità (GdB) e rilascio del tesserino per disabili gravi.", gesetze: "§ 152 SGB IX (Accertamento disabilità, tesserini).", formulare: "Domanda di accertamento disabilità, foto tessera.", anmerkungen: "Ente competente: Versorgungsamt. Allegare referti medici recenti (non più vecchi di 2 anni)." },
+                el: { titel: "Προσδιορισμός αναπηρίας & αίτηση GdB", beschreibung: "Αρχική αίτηση για τον προσδιορισμό του βαθμού αναπηρίας (GdB) και έκδοση ταυτότητας βαριά αναπήρου.", gesetze: "§ 152 SGB IX (Προσδιορισμός αναπηρίας, ταυτότητες).", formulare: "Αίτηση προσδιορισμού αναπηρίας, φωτογραφία ταυτότητας.", anmerkungen: "Αρμόδια αρχή: Versorgungsamt. Επισυνάψτε πρόσφατες ιατρικές εκθέσεις (όχι παλαιότερες των 2 ετών)." },
+                tr: { titel: "Engellilik tespiti ve GdB başvurusu", beschreibung: "Engellilik derecesinin (GdB) belirlenmesi ve ağır engelli kimlik kartının çıkarılması için ilk başvuru.", gesetze: "§ 152 SGB IX (Engellilik tespiti, kimlik kartları).", formulare: "Engellilik tespit başvurusu, vesikalık fotoğraf.", anmerkungen: "Sorumlu: Versorgungsamt (Sosyal Yardım Dairesi). Güncel tıbbi raporları ekleyin (2 yıldan eski olmamalı)." }
+            },
+            {   // Kündigungsschutz
+                de: { titel: "Besonderer Kündigungsschutz", beschreibung: "Kündigung ohne Zustimmung des Integrationsamtes oder Missachtung des besonderen Kündigungsschutzes. GdB ≥ 50. Klagefrist 3 Wochen.", gesetze: "§§ 168-175 SGB IX, KSchG.", formulare: "Widerspruch gegen Kündigung, Kündigungsschutzklage, Antrag Arbeitgeber ans Integrationsamt.", anmerkungen: "Zustimmung des Integrationsamtes zwingend. Frist 3 Wochen." },
+                en: { titel: "Protection against dismissal", beschreibung: "Dismissal without mandatory consent of the Integration Office or violation of special protection. GdB ≥ 50. Lawsuit deadline: 3 weeks.", gesetze: "§§ 168-175 SGB IX, German Protection against Dismissal Act.", formulare: "Objection to dismissal, dismissal protection claim, employer's request to Integration Office.", anmerkungen: "Employer needs Integration Office approval. 3-week deadline." },
+                es: { titel: "Protección contra despido", beschreibung: "Despido sin aprobación del Integrationsamt o incumplimiento de la protección especial (GdB ≥ 50). Plazo demanda: 3 semanas.", gesetze: "§§ 168-175 SGB IX, KSchG.", formulare: "Oposición al despido, demanda protección por despido, solicitud del empleador al Integrationsamt.", anmerkungen: "El empleador necesita autorización del Integrationsamt. Plazo 3 semanas." },
+                ar: { titel: "الحماية من الفصل", beschreibung: "الفصل دون موافقة مكتب التكامل الإلزامية أو انتهاك الحماية الخاصة. GdB ≥ 50. مهلة رفع الدعوى: 3 أسابيع.", gesetze: "§§ 168-175 SGB IX، قانون الحماية من الفصل.", formulare: "الاعتراض على الفصل، دعوى الحماية من الفصل، طلب صاحب العمل إلى مكتب التكامل.", anmerkungen: "يحتاج صاحب العمل إلى موافقة مكتب التكامل. مهلة 3 أسابيع." },
+                pl: { titel: "Ochrona przed zwolnieniem", beschreibung: "Zwolnienie bez wymaganej zgody Integrationsamt lub naruszenie szczególnej ochrony. GdB ≥ 50. Termin na pozew: 3 tygodnie.", gesetze: "§§ 168-175 SGB IX, KSchG.", formulare: "Sprzeciw wobec zwolnienia, pozew o ochronę przed zwolnieniem, wniosek pracodawcy do Integrationsamt.", anmerkungen: "Pracodawca potrzebuje zgody Integrationsamt. Termin 3 tygodnie." },
+                it: { titel: "Tutela contro il licenziamento", beschreibung: "Licenziamento senza consenso obbligatorio dell'Ufficio di Integrazione o violazione della tutela speciale. GdB ≥ 50. Termine causa: 3 settimane.", gesetze: "§§ 168-175 SGB IX, KSchG.", formulare: "Opposizione al licenziamento, causa tutela licenziamento, richiesta del datore all'Ufficio Integrazione.", anmerkungen: "Il datore necessita dell'approvazione. Termine 3 settimane." },
+                el: { titel: "Προστασία από απόλυση", beschreibung: "Απόλυση χωρίς υποχρεωτική συναίνεση του Γραφείου Ένταξης ή παραβίαση ειδικής προστασίας. GdB ≥ 50. Προθεσμία αγωγής: 3 εβδομάδες.", gesetze: "§§ 168-175 SGB IX, KSchG.", formulare: "Ένσταση κατά απόλυσης, αγωγή προστασίας από απόλυση, αίτηση εργοδότη στο Γραφείο Ένταξης.", anmerkungen: "Ο εργοδότης χρειάζεται έγκριση. Προθεσμία 3 εβδομάδων." },
+                tr: { titel: "Özel fesih koruması", beschreibung: "Entegrasyon Ofisi'nin zorunlu onayı olmadan fesih veya özel korumanın ihlali. GdB ≥ 50. Dava süresi: 3 hafta.", gesetze: "§§ 168-175 SGB IX, KSchG (Fesih Koruma Yasası).", formulare: "Feshe itiraz, fesih koruma davası, işverenin Entegrasyon Ofisine başvurusu.", anmerkungen: "İşveren Entegrasyon Ofisi onayına ihtiyaç duyar. 3 haftalık süre." }
+            },
+            {   // Angemessene Vorkehrungen
+                de: { titel: "Angemessene Vorkehrungen am Arbeitsplatz", beschreibung: "Weigerung des Arbeitgebers, angemessene Vorkehrungen (ergonomische Möbel, technische Hilfsmittel) zu treffen.", gesetze: "§ 164 SGB IX.", formulare: "Antrag auf leidensgerechte Gestaltung des Arbeitsplatzes.", anmerkungen: "Integrationsamt bietet Beratung & finanzielle Hilfe. Arbeitgeber muss umsetzen, es sei denn unzumutbar." },
+                en: { titel: "Reasonable accommodations at work", beschreibung: "Employer's refusal to provide reasonable accommodations (ergonomic furniture, technical aids, flexible hours).", gesetze: "§ 164 SGB IX.", formulare: "Request for health-adjusted workplace design.", anmerkungen: "Integration Office offers advice & technical aids. Employer must provide unless undue hardship." },
+                es: { titel: "Ajustes razonables en el trabajo", beschreibung: "Negativa del empleador a proporcionar ajustes razonables (mobiliario ergonómico, ayudas técnicas, horarios flexibles).", gesetze: "§ 164 SGB IX.", formulare: "Solicitud de adaptación del puesto de trabajo por razones de salud.", anmerkungen: "El Integrationsamt ofrece asesoramiento y ayudas técnicas. El empleador debe proveerlos, salvo carga desproporcionada." },
+                ar: { titel: "التكييفات المعقولة في العمل", beschreibung: "رفض صاحب العمل توفير التكييفات المعقولة (أثاث مريح، مساعدات تقنية، ساعات مرنة).", gesetze: "§ 164 SGB IX.", formulare: "طلب تصميم مكان العمل وفقًا للحالة الصحية.", anmerkungen: "مكتب التكامل يقدم استشارات ومساعدات تقنية. على صاحب العمل توفيرها ما لم تكن عبئًا غير متناسب." },
+                pl: { titel: "Rozsądne udogodnienia w miejscu pracy", beschreibung: "Odmowa pracodawcy zapewnienia rozsądnych udogodnień (meble ergonomiczne, pomoc techniczna, elastyczny czas).", gesetze: "§ 164 SGB IX.", formulare: "Wniosek o dostosowanie miejsca pracy do potrzeb zdrowotnych.", anmerkungen: "Integrationsamt oferuje doradztwo i pomoc techniczną. Pracodawca musi zapewnić, chyba że nadmierne obciążenie." },
+                it: { titel: "Accommodamenti ragionevoli sul lavoro", beschreibung: "Rifiuto del datore di lavoro di fornire accomodamenti ragionevoli (arredi ergonomici, ausili tecnici, orari flessibili).", gesetze: "§ 164 SGB IX.", formulare: "Richiesta di adeguamento del posto di lavoro per motivi di salute.", anmerkungen: "Ufficio Integrazione offre consulenza e ausili. Il datore deve fornirli salvo onere sproporzionato." },
+                el: { titel: "Εύλογες προσαρμογές στην εργασία", beschreibung: "Άρνηση εργοδότη να παράσχει εύλογες προσαρμογές (εργονομικά έπιπλα, τεχνικά βοηθήματα, ευέλικτο ωράριο).", gesetze: "§ 164 SGB IX.", formulare: "Αίτηση για σχεδιασμό χώρου εργασίας προσαρμοσμένο στην υγεία.", anmerkungen: "Γραφείο Ένταξης παρέχει συμβουλές και τεχνική βοήθεια. Ο εργοδότης οφείλει να παρέχει, εκτός δυσανάλογης επιβάρυνσης." },
+                tr: { titel: "İş yerinde makul düzenlemeler", beschreibung: "İşverenin makul düzenlemeleri (ergonomik mobilya, teknik yardımlar, esnek çalışma saatleri) sağlamayı reddetmesi.", gesetze: "§ 164 SGB IX.", formulare: "Sağlık durumuna uygun iş yeri düzenlemesi talebi.", anmerkungen: "Entegrasyon Ofisi danışmanlık ve teknik yardım sunar. İşveren, aşırı yük oluşturmadıkça düzenlemeleri sağlamalıdır." }
+            },
+            {   // Zusatzurlaub
+                de: { titel: "Zusatzurlaub für schwerbehinderte Menschen", beschreibung: "Schwierigkeiten bei Gewährung des gesetzlichen Zusatzurlaubs (5 zusätzliche Tage für GdB ≥ 50).", gesetze: "§ 208 SGB IX.", formulare: "Kein spezielles Formular; Antrag beim Arbeitgeber mit Schwerbehindertenausweis.", anmerkungen: "5 Tage pro Jahr bei 5-Tage-Woche, anteilig bei Teilzeit." },
+                en: { titel: "Additional leave (Zusatzurlaub)", beschreibung: "Difficulties in obtaining 5 extra paid vacation days for disabled persons (GdB ≥ 50).", gesetze: "§ 208 SGB IX.", formulare: "No special form. Request employer with disability ID.", anmerkungen: "5 extra days per year (5-day week)." },
+                es: { titel: "Vacaciones adicionales", beschreibung: "Dificultades para obtener 5 días adicionales de vacaciones pagadas para personas con GdB ≥ 50.", gesetze: "§ 208 SGB IX.", formulare: "No se necesita formulario especial. Solicitud al empleador con el carnet de discapacidad.", anmerkungen: "5 días extra por año (semana de 5 días)." },
+                ar: { titel: "إجازة إضافية", beschreibung: "صعوبات في الحصول على 5 أيام إجازة إضافية مدفوعة للأشخاص ذوي الإعاقة (GdB ≥ 50).", gesetze: "§ 208 SGB IX.", formulare: "لا حاجة لنموذج خاص. تقديم طلب لصاحب العمل مع بطاقة الإعاقة.", anmerkungen: "5 أيام إضافية في السنة (أسبوع من 5 أيام)." },
+                pl: { titel: "Dodatkowy urlop", beschreibung: "Trudności w uzyskaniu 5 dodatkowych płatnych dni urlopu dla osób z GdB ≥ 50.", gesetze: "§ 208 SGB IX.", formulare: "Brak specjalnego formularza. Wniosek do pracodawcy z legitymacją niepełnosprawności.", anmerkungen: "5 dodatkowych dni rocznie (5-dniowy tydzień pracy)." },
+                it: { titel: "Ferie aggiuntive", beschreibung: "Difficoltà nell'ottenere 5 giorni extra di ferie retribuite per persone con GdB ≥ 50.", gesetze: "§ 208 SGB IX.", formulare: "Nessun modulo speciale. Richiesta al datore con tesserino di disabilità.", anmerkungen: "5 giorni extra all'anno (settimana di 5 giorni)." },
+                el: { titel: "Επιπλέον άδεια", beschreibung: "Δυσκολίες λήψης 5 επιπλέον ημερών άδειας με αποδοχές για άτομα με GdB ≥ 50.", gesetze: "§ 208 SGB IX.", formulare: "Δεν απαιτείται ειδικό έντυπο. Αίτηση στον εργοδότη με ταυτότητα αναπηρίας.", anmerkungen: "5 επιπλέον ημέρες το χρόνο (εβδομάδα 5 ημερών)." },
+                tr: { titel: "Ek izin (Zusatzurlaub)", beschreibung: "Ağır engelli kişiler için (GdB ≥ 50) yılda 5 ekstra ücretli izin günü alınmasında zorluklar.", gesetze: "§ 208 SGB IX.", formulare: "Özel form gerekmez. Engelli kimlik kartı ile işverene başvuru.", anmerkungen: "Yılda 5 ekstra gün (5 günlük çalışma haftasında)." }
+            },
+            {   // Diskriminierung
+                de: { titel: "Diskriminierung wegen Behinderung", beschreibung: "Diskriminierung im Bewerbungsverfahren oder während des Arbeitsverhältnisses aufgrund der Behinderung.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Beschwerde nach AGG beim Arbeitgeber oder Meldung bei der Antidiskriminierungsstelle.", anmerkungen: "Antidiskriminierungsstelle des Bundes, IFD Darmstadt: ifddarmstadt@bwhw.de" },
+                en: { titel: "Disability discrimination", beschreibung: "Discrimination in recruitment or employment due to disability. Illegal under AGG.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Complaint under AGG to employer or report to Federal Anti-Discrimination Agency.", anmerkungen: "Contact: ifddarmstadt@bwhw.de" },
+                es: { titel: "Discriminación por discapacidad", beschreibung: "Discriminación en procesos de selección o durante la relación laboral por discapacidad.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Queja según AGG ante empleador o denuncia ante la agencia antidiscriminación.", anmerkungen: "Contacto IFD Darmstadt: ifddarmstadt@bwhw.de" },
+                ar: { titel: "التمييز بسبب الإعاقة", beschreibung: "التمييز في التوظيف أو أثناء العمل بسبب الإعاقة. غير قانوني.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "شكوى بموجب AGG لصاحب العمل أو إبلاغ وكالة مكافحة التمييز.", anmerkungen: "الاتصال: ifddarmstadt@bwhw.de" },
+                pl: { titel: "Dyskryminacja", beschreibung: "Dyskryminacja w procesie rekrutacji lub zatrudnieniu z powodu niepełnosprawności.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Skarga AGG do pracodawcy lub zgłoszenie do agencji antydyskryminacyjnej.", anmerkungen: "Kontakt: ifddarmstadt@bwhw.de" },
+                it: { titel: "Discriminazione", beschreibung: "Discriminazione nei processi di assunzione o durante il rapporto di lavoro per disabilità.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Reclamo AGG al datore o segnalazione all'Agenzia antidiscriminazione.", anmerkungen: "Contatti: ifddarmstadt@bwhw.de" },
+                el: { titel: "Διακρίσεις λόγω αναπηρίας", beschreibung: "Διακρίσεις κατά την πρόσληψη ή κατά τη διάρκεια της εργασίας λόγω αναπηρίας.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "Καταγγελία σύμφωνα με το AGG ή αναφορά στην Υπηρεσία Κατά των Διακρίσεων.", anmerkungen: "Επικοινωνία: ifddarmstadt@bwhw.de" },
+                tr: { titel: "Engellilik nedeniyle ayrımcılık", beschreibung: "İşe alım sürecinde veya çalışma ilişkisi sırasında engellilik nedeniyle ayrımcılık.", gesetze: "AGG, § 164 SGB IX, BBG.", formulare: "AGG'ye göre işverene şikayet veya Federal Ayrımcılıkla Mücadele Kurumu'na bildirim.", anmerkungen: "İletişim: ifddarmstadt@bwhw.de" }
+            },
+            {   // Berufliche Rehabilitation
+                de: { titel: "Berufliche Rehabilitation", beschreibung: "Bedarf an beruflichen Reha-Maßnahmen (Weiterbildung, Umschulung) zur Sicherung oder Erlangung eines Arbeitsplatzes.", gesetze: "SGB IX Kapitel 10 (Leistungen zur Teilhabe am Arbeitsleben).", formulare: "Antrag auf Leistungen zur Teilhabe am Arbeitsleben (Rentenversicherung oder Agentur für Arbeit).", anmerkungen: "Formulare: www.arbeitsagentur.de" },
+                en: { titel: "Vocational rehabilitation", beschreibung: "Need for vocational rehabilitation measures (training, retraining) to secure or obtain employment.", gesetze: "SGB IX Chapter 10 (Participation in working life).", formulare: "Application for benefits for participation in working life (pension insurance or employment agency).", anmerkungen: "Forms: www.arbeitsagentur.de" },
+                es: { titel: "Rehabilitación profesional", beschreibung: "Necesidad de medidas de rehabilitación laboral (formación, reciclaje) para mantener o conseguir empleo.", gesetze: "SGB IX Capítulo 10.", formulare: "Solicitud de prestaciones de participación en la vida laboral (pensión o agencia de empleo).", anmerkungen: "www.arbeitsagentur.de (formularios)." },
+                ar: { titel: "التأهيل المهني", beschreibung: "الحاجة إلى تدابير إعادة التأهيل المهني (تدريب، إعادة تأهيل) لتأمين العمل.", gesetze: "SGB IX الفصل 10.", formulare: "طلب إعانات المشاركة في الحياة العملية (التأمين التقاعدي أو وكالة العمل).", anmerkungen: "النماذج: www.arbeitsagentur.de" },
+                pl: { titel: "Rehabilitacja zawodowa", beschreibung: "Potrzeba zawodowych środków rehabilitacyjnych (szkolenie, przekwalifikowanie) w celu uzyskania zatrudnienia.", gesetze: "SGB IX Rozdział 10.", formulare: "Wniosek o świadczenia uczestnictwa w życiu zawodowym (ubezpieczenie emerytalne lub agencja pracy).", anmerkungen: "Formularze: www.arbeitsagentur.de" },
+                it: { titel: "Riabilitazione professionale", beschreibung: "Necessità di misure di riabilitazione professionale (formazione, riqualificazione) per ottenere o mantenere un lavoro.", gesetze: "SGB IX Capitolo 10.", formulare: "Domanda di prestazioni per la partecipazione alla vita lavorativa (pensione o agenzia per il lavoro).", anmerkungen: "Moduli: www.arbeitsagentur.de" },
+                el: { titel: "Επαγγελματική αποκατάσταση", beschreibung: "Ανάγκη μέτρων επαγγελματικής αποκατάστασης (κατάρτιση, επανεκπαίδευση) για εξασφάλιση εργασίας.", gesetze: "SGB IX Κεφάλαιο 10.", formulare: "Αίτηση παροχών συμμετοχής στην εργασιακή ζωή (ασφάλιση σύνταξης ή γραφείο εργασίας).", anmerkungen: "Έντυπα: www.arbeitsagentur.de" },
+                tr: { titel: "Mesleki rehabilitasyon", beschreibung: "İşe yerleşme veya işte kalma için mesleki rehabilitasyon önlemlerine (eğitim, yeniden eğitim) duyulan ihtiyaç.", gesetze: "SGB IX Bölüm 10 (Çalışma hayatına katılım yardımları).", formulare: "Çalışma hayatına katılım yardımları başvurusu (emeklilik sigortası veya çalışma ajansı).", anmerkungen: "Formlar: www.arbeitsagentur.de" }
+            }
+        ]
+    };
+
+    // Gemeinsame Dokumentenlinks (bleiben gleich, unabhängig von Sprache)
+    const commonLinks = [
+        { tipo: "local", url: "C:\\Users\\scholer-erik\\Desktop\\Erstantrag Festellung des Grades der Behinderung.docx", texto: "📄 Erstantrag GdB" },
+        { tipo: "web", url: "https://Schwerbehindertenantrag.hessen.de", texto: "🌐 Schwerbehindertenantrag Hessen" },
+        { tipo: "local", url: "Stellungnahme an Integrationsamt.docx", texto: "📎 Stellungnahme Integrationsamt" },
+        { tipo: "local", url: "antrag-auf-leidensgerechten-arbeitsplatz-muster-vorlage.docx", texto: "📄 Antrag Arbeitsplatz (Vorkehrungen)" },
+        { tipo: "local", url: "Zusattzurlaub.pdf", texto: "📕 Zusatzurlaub.pdf" },
+        { tipo: "local", url: "Beschwerde_nach_13_AGG_Ausfuellhinweise.docx", texto: "⚖️ Beschwerde AGG" }
+    ];
+
+    let currentLang = "de"; // Standard Deutsch
+
+    function renderLinks() {
+        return commonLinks.map(link => {
+            if (link.tipo === 'local') {
+                return `<a href="#" class="file-link" onclick="alert('Lokale Referenz: ${link.url.replace(/\\/g, '\\\\')}\\n (Originaldokument auf dem System)'); return false;">📂 ${link.texto}</a>`;
+            } else {
+                return `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="web-link">🔗 ${link.texto}</a>`;
+            }
+        }).join('');
+    }
+
+    function renderPage(lang) {
+        const ui = translations.ui[lang];
+        document.getElementById("mainTitle").innerText = ui.title;
+        document.getElementById("subtitle").innerText = ui.subtitle;
+        document.getElementById("footerNote").innerHTML = ui.footer;
+        
+        const container = document.getElementById("cardsContainer");
+        container.innerHTML = "";
+        
+        // RTL für Arabisch
+        if (lang === "ar") {
+            document.body.setAttribute("dir", "rtl");
+        } else {
+            document.body.setAttribute("dir", "ltr");
+        }
+        
+        const situations = translations.situations;
+        for (let i = 0; i < situations.length; i++) {
+            const data = situations[i][lang];
+            if (!data) continue;
+            const titel = data.titel || "—";
+            const beschreibung = data.beschreibung || "—";
+            const gesetze = data.gesetze || "—";
+            const formulare = data.formulare || "—";
+            const anmerkungen = data.anmerkungen || "—";
+            
+            const card = document.createElement("div");
+            card.className = "situation-card";
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="situation-title">${escapeHtml(titel)}</span>
+                </div>
+                <div class="card-body">
+                    <div class="section"><h3>📌 ${lang === 'de' ? 'Problembeschreibung' : (lang==='en'?'Description':(lang==='es'?'Descripción':(lang==='ar'?'وصف المشكلة':(lang==='pl'?'Opis problemu':(lang==='it'?'Descrizione problema':(lang==='el'?'Περιγραφή προβλήματος':'Sorun tanımı'))))))}</h3><p>${escapeHtml(beschreibung)}</p></div>
+                    <div class="section"><h3>⚖️ ${lang === 'de' ? 'Anwendbare Gesetze' : (lang==='en'?'Applicable laws':(lang==='es'?'Leyes aplicables':(lang==='ar'?'القوانين الواجبة التطبيق':(lang==='pl'?'Obowiązujące przepisy':(lang==='it'?'Leggi applicabili':(lang==='el'?'Εφαρμοστέοι νόμοι':'Uygulanan yasalar'))))))}</h3><p>${escapeHtml(gesetze)}</p></div>
+                    <div class="section"><h3>📝 ${lang === 'de' ? 'Formulare / Musterbriefe' : (lang==='en'?'Forms / templates':(lang==='es'?'Formularios / cartas tipo':(lang==='ar'?'النماذج / الرسائل النموذجية':(lang==='pl'?'Formularze / wzory pism':(lang==='it'?'Moduli / lettere tipo':(lang==='el'?'Έντυπα / υποδείγματα':'Formlar / örnek mektuplar'))))))}</h3><p>${escapeHtml(formulare)}</p></div>
+                    <div class="section"><h3>💡 ${lang === 'de' ? 'Anmerkungen / Zusatzinfos' : (lang==='en'?'Remarks / additional info':(lang==='es'?'Anotaciones / información adicional':(lang==='ar'?'ملاحظات / معلومات إضافية':(lang==='pl'?'Uwagi / dodatkowe informacje':(lang==='it'?'Note / info aggiuntive':(lang==='el'?'Παρατηρήσεις / πρόσθετες πληροφορίες':'Notlar / ek bilgiler'))))))}</h3><p>${escapeHtml(anmerkungen)}</p></div>
+                    <div class="section"><h3>🔗 ${lang === 'de' ? 'Dokumente & Links' : (lang==='en'?'Documents & links':(lang==='es'?'Documentos y enlaces':(lang==='ar'?'المستندات والروابط':(lang==='pl'?'Dokumenty i linki':(lang==='it'?'Documenti e link':(lang==='el'?'Έγγραφα και σύνδεσμοι':'Belgeler ve bağlantılar'))))))}</h3><div class="link-list">${renderLinks()}</div></div>
+                </div>
+            `;
+            container.appendChild(card);
+        }
+        
+        // Aktualisierungsdatum
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString(lang === 'de' ? 'de-DE' : (lang==='en'?'en-US':(lang==='es'?'es-ES':(lang==='ar'?'ar-EG':(lang==='pl'?'pl-PL':(lang==='it'?'it-IT':(lang==='el'?'el-GR':'tr-TR')))))));
+        document.getElementById("liveDate").innerHTML = `📅 ${lang === 'de' ? 'Aktualisiert' : (lang==='en'?'Updated':(lang==='es'?'Actualizado':(lang==='ar'?'تم التحديث':(lang==='pl'?'Zaktualizowano':(lang==='it'?'Aggiornato':(lang==='el'?'Ενημερώθηκε':'Güncellendi'))))))}: ${formattedDate}`;
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Sprachumschaltung + aktive Flagge
+    function setLanguage(lang) {
+        currentLang = lang;
+        renderPage(lang);
+        document.querySelectorAll('.flag-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    // Eventlistener für Flaggen
+    document.querySelectorAll('.flag-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const lang = btn.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+    
+    // Standard: Deutsch aktiv setzen
+    setLanguage('de');
+</script>
+</body>
+</html>
